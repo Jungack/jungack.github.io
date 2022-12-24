@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Définition de la police originale */
+    @font-face {
+      font-family: "GnomeFont";
+      src: url(gnome-font.ttf) format("truetype");
+    }
+
+    /* Style du bouton "Découvrir ma surprise" */
+    .reveal-button {
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      transition: all 0.3s ease;
+      position: absolute; /* le bouton est positionné absolument */
+      top: 50%; /* le bouton est placé à 50% de la hauteur de la page */
+      left: 50%; /* le bouton est placé à 50% de la largeur de la page */
+      transform: translate(-50%, -50%); /* le bouton est recentré par rapport à sa position absolue */
+      transform: scale(1); /* le bouton n'est pas agrandi par défaut */
+      z-index: 1; /* le bouton est au premier plan */
+    }
+
+    .reveal-button:hover {
+      /* lorsque la souris passe sur le bouton, celui-ci est agrandi */
+      transform: scale(1.1);
+    }
+
+    /* Style de l'invitation */
+    .invitation {
+      font-family: "GnomeFont", Arial, sans-serif;
+      font-size: 36px;
+      color: #ff9800;
+      text-align: center;
+      display: none; /* l'invitation est cachée par défaut */
+      animation: fadeIn 0.5s; /* l'invitation apparaît avec un fondu */
+      position: absolute; /* l'invitation est positionnée absolument */
+      top: 50%; /* l'invitation est placée à 50% de la hauteur de la page */
+      left: 50%; /* l'invitation est placée à 50% de la largeur de la page */
+      transform: translate(-50%, -50%); /* l'invitation est recentrée par rapport à sa position absolue */
+      z-index: 2; /* l'invitation est au second plan */
+    }
+
+    /* Keyframes de l'animation de fondu */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Style du décompte */
+    .countdown {
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      color: #333;
+      text-align: center;
+      position: absolute; /* le décompte est positionné absolument */
+      top: 10%; /* le décompte est placé à 10% de la hauteur de la page */
+      left: 50%; /* le décompte est placé à 50% de la largeur de la page */
+      transform: translate(-50%, 0); /* le décompte est recentré par rapport à sa position absolue */
+      z-index: 3; /* le décompte est au-dessus de tous les autres éléments */
+    }
+  </style>
+</head>
+<body>
+  <!-- Bouton "Découvrir ma surprise" -->
+  <button class="reveal-button" id="button" onclick="revealInvitation()">Appuie encore 103 fois pour découvrir la surprise !</button>
+
+  <!-- Invitation cachée -->
+  <p class="invitation">Je t'invite à mon anniversaire le mercredi 28 Décembre pour un S'enfuir Jeu ! Choisis avec moi le S'enfuir Jeu que tu veux, c'est le plus beau cadeau que je peux recevoir !</p>
+
+  <div class="countdown" id="countdown"></div>
+  <script>
+    // Nombre de clics restants avant de découvrir la surprise
+    var clicks = 103;
+
+    // Timer pour le décompte de 60 secondes
+    var timer = 60;
+
+function revealInvitation() {
+  // Réduit le nombre de clics restants
+  clicks--;
+
+  // Si le nombre de clics est égal à 0, affiche l'invitation et cache le bouton
+  if (clicks == 0) {
+    // Récupère l'élément de l'invitation
+    var invitation = document.querySelector(".invitation");
+
+    // Affiche l'invitation
+    invitation.style.display = "block";
+
+    // Cache le bouton
+    var button = document.querySelector("#button");
+    button.style.display = "none";
+  } else {
+    // Modifie le texte du bouton pour afficher le nombre de clics restants
+    var button = document.querySelector("#button");
+    button.innerHTML = "Appuie encore " + clicks + " fois pour découvrir la surprise !";
+    // Change la couleur du bouton
+    button.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+    // Génère des coordonnées aléatoires pour le bouton
+    var x = Math.random() * (window.innerWidth - button.offsetWidth);
+    var y = Math.random() * (window.innerHeight - button.offsetHeight);
+    // Modifie la position du bouton
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+  }
+}
+
+setInterval(function() {
+    timer--;
+    countdown.innerHTML = timer + " secondes restantes avant le rafraîchissement de la page";
+    if (timer == 0) {
+      window.location.reload();
+    }
+}, 1000);
+
+  </script>
+</body>
+</html>
