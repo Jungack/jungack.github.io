@@ -77,28 +77,10 @@
 </head>
 <body>
   <!-- Bouton "Découvrir ma surprise" -->
-  <button class="reveal-button" id="button" onclick="revealInvitation()">Appuie encore 103 fois pour découvrir la surprise !</button>
+  <button class="reveal-button" id="button" onclick="revealInvitation()">Catch me! 103 times left and I may give you the clue...</button>
 
   <!-- Invitation cachée -->
-  <p class="invitation">Dans l'éther où les étoiles bataillent,<br>
-L'espace immense où les galaxies défilent,<br>
-Les vaisseaux filent, rapides, sans faille,<br>
-Comme des bolides, dans une course docile.<br>
-<br>
-Joyeux Noël, cousin, mon cher ami,<br>
-Ma bourse, mince, ne fait pas de magie,<br>
-Un simple poème, mon don aujourd'hui,<br>
-Pour te souhaiter une fête remplie.<br>
-<br>
-Radinerie, ma triste compagnie,<br>
-Un présent plus grand, j'aurais voulu, oui.<br>
-Mais ces mots sincères, je te les dis,<br>
-Joyeux Noël, cher cousin, infini.<br>
-<br>
-Je sais que c'est peu, mon cher cousin,<br>
-Mais ce poème vient du fond de mon être, au loin.<br>
-Puisse-t-il éclairer ta fête, comme un chérubin,<br>
-Et te combler de bonheur, même si c'est moins soudain.</p>
+  <p class="invitation">Address number is 7!</p>
 
   <div class="countdown" id="countdown"></div>
   <script>
@@ -115,7 +97,7 @@ function revealInvitation() {
   // Si le nombre de clics est égal à 0, affiche l'invitation et cache le bouton
   if (clicks == 0) {
     timer = 20
-    countdown.innerHTML = "BRAVISSIMOOOOOOOOOO MAQUEMAQUEMAQUEEEEEE !!!"
+    countdown.innerHTML = "You got It!"
     // Récupère l'élément de l'invitation
     var invitation = document.querySelector(".invitation");
 
@@ -128,7 +110,7 @@ function revealInvitation() {
   } else {
     // Modifie le texte du bouton pour afficher le nombre de clics restants
     var button = document.querySelector("#button");
-    button.innerHTML = "Appuie encore " + clicks + " fois pour découvrir la surprise !";
+    button.innerHTML = "Catch me! " + clicks + " times left and I may give you the clue...";
     // Change la couleur du bouton
     button.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
     // Génère des coordonnées aléatoires pour le bouton
@@ -142,7 +124,7 @@ function revealInvitation() {
 
 setInterval(function() {
     timer--;
-    countdown.innerHTML = timer + " secondes restantes avant le rafraîchissement de la page";
+    countdown.innerHTML = timer + " seconds left before I refresh this page";
     if (timer == 0) {
       window.location.reload();
     }
